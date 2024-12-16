@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'homeapp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,7 +69,19 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'websocket.wsgi.application'
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
+
+# WSGI_APPLICATION = 'websocket.wsgi.application'
+ASGI_APPLICATION = 'websocket.asgi.application'
 
 
 # Database
